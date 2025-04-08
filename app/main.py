@@ -18,7 +18,7 @@ app = FastAPI(
     description="A FastAPI application for creating, listing available codes, and deleting QR codes. "
                 "It also supports OAuth for secure access.",
     version="0.0.1",
-        redoc_url=None,
+    redoc_url=None,
     contact={
         "name": "API Support",
         "url": "http://www.example.com/support",
@@ -28,10 +28,8 @@ app = FastAPI(
         "name": "Apache 2.0",
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     }
-
 )
 
-# Here, we include the routers for our application. Routers define the paths and operations your API provides.
-# We have two routers in this case: one for managing QR codes and another for handling OAuth authentication.
-app.include_router(qr_code.ruter)  # QR code management routes
+# Include the routers for the QR code management and OAuth authentication
+app.include_router(qr_code.router, prefix="/qr-codes")  # QR code management routes
 app.include_router(oauth.router)  # OAuth authentication routes
